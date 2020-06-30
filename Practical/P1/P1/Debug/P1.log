@@ -1,46 +1,77 @@
 ﻿  P1.cpp
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(232): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(233): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(234): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(237): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(238): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(239): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(246): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(252): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(253): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(256): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(257): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(263): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(268): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(269): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(270): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(271): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(274): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(275): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(276): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(277): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(280): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(281): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(282): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(283): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(286): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(287): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(288): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(289): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(292): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(293): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(294): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(295): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(313): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(314): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(315): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(318): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(319): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(320): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(323): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(324): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(325): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(328): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(329): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(330): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(276): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(278): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(279): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(492): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(493): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(494): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(507): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(510): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(513): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(516): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(519): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(522): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(523): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(525): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(528): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(531): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(535): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(536): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(537): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(550): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(552): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(560): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(562): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(566): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(568): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(577): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(578): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(579): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(583): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(585): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(596): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(600): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(602): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(611): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(612): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(613): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(617): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(619): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(628): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(630): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(636): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(637): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(639): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(651): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(654): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(657): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(668): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(670): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(676): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(677): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(679): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(683): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(690): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(698): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(699): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(700): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(704): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(711): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(719): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(720): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(721): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(732): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(735): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(736): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(747): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(751): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(760): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(767): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(769): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(770): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(778): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(785): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(787): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p1\p1\p1.cpp(788): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   P1.vcxproj -> C:\Users\User\Desktop\Practical - GP\Practical\P1\Debug\P1.exe
