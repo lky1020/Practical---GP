@@ -1,0 +1,4 @@
+﻿  P2.cpp
+c:\users\user\desktop\practical - gp\practical\p2\p2\p2.cpp(105): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\p2\p2\p2.cpp(106): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  P2.vcxproj -> C:\Users\User\Desktop\Practical - GP\Practical\P2\Debug\P2.exe
