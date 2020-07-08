@@ -3,7 +3,7 @@
 
 #pragma comment (lib, "OpenGL32.lib")
 
-#define WINDOW_TITLE "OpenGL Window"
+#define WINDOW_TITLE "P2"
 
 int num = 0;
 
@@ -73,6 +73,9 @@ void display()
 	//--------------------------------
 	//	OpenGL drawing
 	//--------------------------------
+
+	glClear(GL_COLOR_BUFFER_BIT);
+
 	switch (num) {
 	case 1:
 		q1();
@@ -87,7 +90,6 @@ void display()
 		q4();
 		break;
 	default:
-		q4();
 		break;
 	}
 
@@ -98,18 +100,16 @@ void display()
 //--------------------------------------------------------------------
 
 void q1() {
-	//glTranslatef(0.0001f, 0.0, 0.0);
-	glTranslatef(0.2f, 0.0, 0.0);
+	glTranslatef(0.001f, 0.0f, 0.0);
 	glBegin(GL_TRIANGLES);
 	glVertex2f(0.0, 0.0);
-	glVertex2f(0.1, 0.0);
-	glVertex2f(0.0, 0.1);
+	glVertex2f(0.5, 0.0);
+	glVertex2f(0.0, 0.5);
 	glEnd();
 }
 
 void q2() {
 	glLoadIdentity();
-	//glTranslatef(0.0001f, 0.0, 0.0);
 	glTranslatef(0.5f, 0.0, 0.0);
 	glBegin(GL_TRIANGLES);
 	glVertex2f(0.0, 0.0);
@@ -139,21 +139,22 @@ void q3() {
 	glVertex2f(0.0, 0.5);
 	glEnd();*/
 
-	//rotate the translate
+	//translate then rotate
 	glColor3d(0.0, 1.0, 1.0);
-	glLoadIdentity();
-	glRotatef(45.0, 0.0, 0.0, 1.0);
-	glTranslatef(0.5f, 0.0, 0.0);
+	//glLoadIdentity();
+	//glScalef(0.9, 0.9, 1.0);
+	glRotatef(1.0, 0.0, 0.0, 1.0);
+	glTranslatef(0.001f, 0.0, 0.0);
 	glBegin(GL_TRIANGLES);
 	glVertex2f(0.0, 0.0);
 	glVertex2f(0.5, 0.0);
 	glVertex2f(0.0, 0.5);
 	glEnd();
+
+	q4();
 }
 
 void q4() {
-	q3();
-	glLoadIdentity();
 	glBegin(GL_QUADS);
 	glVertex2f(-0.5, -0.5);
 	glVertex2f(-0.5, -1.0);
