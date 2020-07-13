@@ -59,16 +59,24 @@ LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 	case WM_KEYDOWN:
 		if (wParam == VK_ESCAPE) PostQuitMessage(0);
 		else if (wParam == 0x31 || wParam == VK_NUMPAD1) {
+			glPopMatrix();
 			num = 1;
+			glPushMatrix();
 		}
 		else if (wParam == 0x32 || wParam == VK_NUMPAD2) {
+			glPopMatrix();
 			num = 2;
+			glPushMatrix();
 		}
 		else if (wParam == 0x33 || wParam == VK_NUMPAD3) {
+			glPopMatrix();
 			num = 3;
+			glPushMatrix();
 		}
 		else if (wParam == 0x34 || wParam == VK_NUMPAD4) {
+			glPopMatrix();
 			num = 4;
+			glPushMatrix();
 		}
 		else if (wParam == VK_LEFT) {
 			action = 'L';
