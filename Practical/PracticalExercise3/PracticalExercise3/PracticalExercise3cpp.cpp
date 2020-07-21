@@ -29,8 +29,10 @@ float radius = 0.1f;
 float angle;
 
 //Fan
+float initialFanSpeed = 0.01;
 float fanSpeed = 0.01;
 //Bird
+float initialBirdSpeed = 0.0001;
 float birdSpeed = 0.0001;
 
 void q2();
@@ -89,14 +91,18 @@ LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 		else if (wParam == VK_OEM_PLUS || wParam == VK_ADD) {
 			if (fanSpeed <= 0.5) {
 				fanSpeed += 0.01f;
-				birdSpeed += 0.001f;
+			}
+			if (birdSpeed <= 0.001f) {
+				birdSpeed += 0.0001f;
 			}
 
 		}
 		else if (wParam == VK_OEM_MINUS || wParam == VK_SUBTRACT) {
 			if (fanSpeed >= -0.5) {
 				fanSpeed -= 0.01f;
-				birdSpeed -= 0.001f;
+			}
+			if (birdSpeed >= -0.001f) {
+				birdSpeed -= 0.0001f;
 			}
 		}
 		else if (wParam == 0x52) {
@@ -235,26 +241,38 @@ void rectDirection() {
 
 void q2() {
 	glPushMatrix();
-	glLoadIdentity();
-	mountain(248.0 / 255.0, 89.0 / 255.0, 21.0 / 255.0, 254.0 / 255.0, 211.0 / 255.0, 133.0 / 255.0, 255.0 / 255.0, 166.0 / 255.0, 0.0 / 255.0);
-	glPushMatrix();
-	glTranslatef(0.75, 0.0, 0.0);
-	mountain(248.0 / 255.0, 89.0 / 255.0, 21.0 / 255.0, 254.0 / 255.0, 211.0 / 255.0, 133.0 / 255.0, 255.0 / 255.0, 166.0 / 255.0, 0.0 / 255.0);
-	glPopMatrix();
-	land();
-	sun();
-	glPopMatrix();
-
-	glTranslatef(birdSpeed, 0.0, 0.0);
-	glPushMatrix();
-	bird(0.525, 0.8, 0.775, 0.8);
-	bird(0.275, 0.6, 0.525, 0.6);
-	bird(-0.175, 0.75, 0.075, 0.75);
+		glLoadIdentity();
+		mountain(248.0 / 255.0, 89.0 / 255.0, 21.0 / 255.0, 254.0 / 255.0, 211.0 / 255.0, 133.0 / 255.0, 255.0 / 255.0, 166.0 / 255.0, 0.0 / 255.0);
+			glPushMatrix();
+				glTranslatef(0.75, 0.0, 0.0);
+				mountain(248.0 / 255.0, 89.0 / 255.0, 21.0 / 255.0, 254.0 / 255.0, 211.0 / 255.0, 133.0 / 255.0, 255.0 / 255.0, 166.0 / 255.0, 0.0 / 255.0);
+			glPopMatrix();
+		land();
+		sun();
 	glPopMatrix();
 
-	/*windmillBuilding(-0.65, -0.15, 0.3, 0.3);
+	//Bird Fly
+	glPushMatrix();
+		glLoadIdentity();
+		glTranslatef(initialBirdSpeed, 0.0, 0.0);
+		bird(0.525, 0.8, 0.775, 0.8);
+		bird(0.275, 0.6, 0.525, 0.6);
+		bird(-0.175, 0.75, 0.075, 0.75);
+	glPopMatrix();
+
+	initialBirdSpeed += birdSpeed;
+
+	if (initialBirdSpeed > 1.5) {
+		initialBirdSpeed = birdSpeed;
+	}
+	if (initialBirdSpeed < -2.0) {
+		initialBirdSpeed = birdSpeed;
+	}
+
+	windmillBuilding(-0.65, -0.15, 0.3, 0.3);
 	windmillBuilding(0.0, -0.1, 0.4, 0.4);
-	windmillBuilding(0.65, -0.15, 0.3, 0.3);*/
+	windmillBuilding(0.65, -0.15, 0.3, 0.3);
+
 }
 
 //background
@@ -348,36 +366,43 @@ void windmillBuilding(float tx, float ty, float sx, float sy) {
 
 	//draw building, window, door
 	glPushMatrix();
-	glLoadIdentity();
-	glTranslatef(tx, ty, 0.0);
-	glScalef(sx, sy, 1.0);
+		glLoadIdentity();
+		glTranslatef(tx, ty, 0.0);
+		glScalef(sx, sy, 1.0);
 
-	building();
+		building();
 
-	//window
-	doorWindow(0.0, -0.85, 0.30, 116.0 / 255.0, 117.0 / 255.0, 103.0 / 255.0, 104.0 / 255.0, 107.0 / 255.0, 90.0 / 255.0);
+		//window
+		doorWindow(0.0, -0.85, 0.30, 116.0 / 255.0, 117.0 / 255.0, 103.0 / 255.0, 104.0 / 255.0, 107.0 / 255.0, 90.0 / 255.0);
 
-	//door
-	doorWindow(0.0, -2.1, 0.35, 168.0 / 255.0, 129.0 / 255.0, 90.0 / 255.0, 117.0 / 255.0, 73.0 / 255.0, 29.0 / 255.0);
+		//door
+		doorWindow(0.0, -2.1, 0.35, 168.0 / 255.0, 129.0 / 255.0, 90.0 / 255.0, 117.0 / 255.0, 73.0 / 255.0, 29.0 / 255.0);
 	glPopMatrix();
 
-	//draw fan (rotation animation)
-	glRotatef(fanSpeed, 0.0, 0.0, 1.0);
+	//draw fan (rotation animation - fan)
 	glPushMatrix();
-	glTranslatef(tx, ty, 0.0);
-	glScalef(sx, sy, 1.0);
-	fan(0.0, 0.0, 0.0, 0.5, 0.5, 0.2, 0.2, 0.3, 0.05, 0.6, 0.35, 0.5, 0.5);
-	fan(90.0, 0.0, 0.0, 0.5, 0.5, 0.2, 0.2, 0.3, 0.05, 0.6, 0.35, 0.5, 0.5);
-	fan(180.0, 0.0, 0.0, 0.5, 0.5, 0.2, 0.2, 0.3, 0.05, 0.6, 0.35, 0.5, 0.5);
-	fan(270.0, 0.0, 0.0, 0.5, 0.5, 0.2, 0.2, 0.3, 0.05, 0.6, 0.35, 0.5, 0.5);
+		glTranslatef(tx, ty, 0.0);
+			glRotatef(initialFanSpeed, 0.0, 0.0, 1.0);
+		glTranslatef(-tx, -ty, 0.0);
+
+		initialFanSpeed += fanSpeed;
+
+		glPushMatrix();
+			glTranslatef(tx, ty, 0.0);
+			glScalef(sx, sy, 1.0);
+			fan(0.0, 0.0, 0.0, 0.5, 0.5, 0.2, 0.2, 0.3, 0.05, 0.6, 0.35, 0.5, 0.5);
+			fan(90.0, 0.0, 0.0, 0.5, 0.5, 0.2, 0.2, 0.3, 0.05, 0.6, 0.35, 0.5, 0.5);
+			fan(180.0, 0.0, 0.0, 0.5, 0.5, 0.2, 0.2, 0.3, 0.05, 0.6, 0.35, 0.5, 0.5);
+			fan(270.0, 0.0, 0.0, 0.5, 0.5, 0.2, 0.2, 0.3, 0.05, 0.6, 0.35, 0.5, 0.5);
+		glPopMatrix();
 	glPopMatrix();
 
 	//draw fan core
 	glPushMatrix();
-	glLoadIdentity();
-	glTranslatef(tx, ty, 0.0);
-	glScalef(sx, sy, 1.0);
-	circle(0.0, 0.0, 0.1, 217.0 / 255.0, 186.0 / 255.0, 162.0 / 255.0, 137.0 / 255.0, 99.0 / 255.0, 63.0 / 255.0);
+		glLoadIdentity();
+		glTranslatef(tx, ty, 0.0);
+		glScalef(sx, sy, 1.0);
+		circle(0.0, 0.0, 0.1, 217.0 / 255.0, 186.0 / 255.0, 162.0 / 255.0, 137.0 / 255.0, 99.0 / 255.0, 63.0 / 255.0);
 	glPopMatrix();
 
 }
@@ -550,23 +575,23 @@ void fan(float angle, float line1x, float line1y, float line2x, float line3x, fl
 
 	//to allocate the fan origin position
 	glRotatef(angle, 0.0, 0.0, 1.0);
+
 	glColor3d(177.0 / 255.0, 121.0 / 255.0, 73.0 / 255.0);
 	glLineWidth(5);
 	glBegin(GL_LINES);
-	glVertex2f(line1x, line1y);
-	glVertex2f(line2x, line3x);
+		glVertex2f(line1x, line1y);
+		glVertex2f(line2x, line3x);
 	glEnd();
 
 	glColor3d(142.0 / 255.0, 99.0 / 255.0, 57.0 / 255.0);
 	glBegin(GL_QUADS);
-	glVertex2f(vQ1x, vQ1y);
-	glVertex2f(vQ2x, vQ2y);
-	glVertex2f(vQ3x, vQ3y);
-	glVertex2f(vQ4x, vQ4y);
+		glVertex2f(vQ1x, vQ1y);
+		glVertex2f(vQ2x, vQ2y);
+		glVertex2f(vQ3x, vQ3y);
+		glVertex2f(vQ4x, vQ4y);
 	glEnd();
 
 }
-
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR, int nCmdShow)
 {
