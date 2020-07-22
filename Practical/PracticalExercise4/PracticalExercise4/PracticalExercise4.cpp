@@ -15,8 +15,13 @@ void q1q2();
 void drawPyramid(float size);
 
 //Q3
+float initialArmRotate = 0.0f;
+float armRotate = 0.0f;
+float initialArmMove = 0.0f;
+float armMove = 0.0f;
 void q3();
-
+void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, float maxZ);
+void drawHand();
 
 LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -50,13 +55,39 @@ LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 			x = 0.0f;
 			y = 0.0f;
 			z = 1.0f;
-			pyramidSpeed = 0.01f;
+			pyramidSpeed = 0.01f; 
 		}
 		else if (wParam == VK_SPACE) {
 			x = 1.0f;
 			y = 1.0f;
 			z = 1.0f;
 			pyramidSpeed = 0.01f;
+			initialArmRotate = 0.0f;
+			armRotate = 0.0f;
+			initialArmMove = 0.0f;
+			armMove = 0.0f;
+		}
+		else if (wParam == VK_LEFT) {
+			//AntiClockWise
+			armRotate = 0.005f;
+		}
+		else if (wParam == VK_RIGHT) {
+			//Clockwise
+			armRotate = -0.005f;
+		}
+		else if (wParam == VK_UP) {
+			//AntiClockWise
+			armMove = 0.005f;
+
+		}
+		else if (wParam == VK_DOWN) {
+			//Clockwise
+			armMove = -0.005f;
+		}
+		//Stop arm move and rotate
+		else if (wParam == 0x53) {
+			armMove = 0.0f;
+			armRotate = 0.0f;
 		}
 
 		break;
@@ -117,7 +148,7 @@ void display()
 			q3();
 			break;
 		default:
-			q1q2();
+			q3();
 			break;
 	}
 	//--------------------------------
@@ -146,6 +177,7 @@ void drawPyramid(float size) {
 	glVertex3f(size, size, 0.0f);
 	glEnd();
 
+	glColor3d(1.0, 1.0, 1.0);;
 	//left side triangle
 	glBegin(GL_LINE_LOOP);
 	glVertex3f(0.0f, 0.0f, 0.0f);
@@ -178,7 +210,95 @@ void drawPyramid(float size) {
 
 //Q3
 void q3() {
+	glPushMatrix();
 
+		glScalef(0.4, 0.4, 0.4);
+		glTranslatef(-0.2f, 0.0f, 0.0f);
+		//Left, Right to rotate
+		glRotatef(initialArmRotate, 1.0f, 0.0f, -0.5f);
+		initialArmRotate += armRotate;
+
+		drawRectangle(-1.5f, 0.0f, 0.0f, 0.5f, 0.0f, 0.5f);
+
+		glPushMatrix();
+			//Up, Down to move arm up down
+			glRotatef(initialArmMove, 0.0f, 0.0f, 0.5f);
+			initialArmMove += armMove;
+
+			if (initialArmMove >= 45.0f) {
+
+				initialArmMove = 45.0f;
+				armMove = 0.0f;
+
+			}else if(initialArmMove <= 0.0f) {
+
+				initialArmMove = 0.0f;
+				armMove = 0.0f;
+
+			}
+
+			drawRectangle(0.0f, 1.5f, 0.0f, 0.5f, 0.0f, 0.5f);
+
+		glPopMatrix();
+		
+		drawHand();
+
+	glPopMatrix();
+}
+
+void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, float maxZ) {
+	//Back
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(minX, maxY, minZ);
+	glVertex3f(minX, minY, minZ);
+	glVertex3f(maxX, minY, minZ);
+	glVertex3f(maxX, maxY, minZ);
+	glEnd();
+
+	//Bottom
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(minX, minY, maxZ);
+	glVertex3f(minX, minY, minZ);
+	glVertex3f(maxX, minY, minZ);
+	glVertex3f(maxX, minY, maxZ);
+	glEnd();
+
+	//Left
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(minX, maxY, maxZ);
+	glVertex3f(minX, maxY, minZ);
+	glVertex3f(minX, minY, minZ);
+	glVertex3f(minX, minY, maxZ);
+	glEnd();
+
+	//Top
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(minX, maxY, maxZ);
+	glVertex3f(minX, maxY, minZ);
+	glVertex3f(maxX, maxY, minZ);
+	glVertex3f(maxX, maxY, maxZ);
+	glEnd();
+
+	//Right
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(maxX, maxY, maxZ);
+	glVertex3f(maxX, maxY, minZ);
+	glVertex3f(maxX, minY, minZ);
+	glVertex3f(maxX, minY, maxZ);
+	glEnd();
+
+	//Front
+	glBegin(GL_LINE_LOOP);
+	glVertex3f(minX, maxY, maxZ);
+	glVertex3f(minX, minY, maxZ);
+	glVertex3f(maxX, minY, maxZ);
+	glVertex3f(maxX, maxY, maxZ);
+	glEnd();
+}
+
+void drawHand() {
+	//palm
+	drawRectangle(1.5f, 2.0f, -0.05f, 0.55f, 0.15f, 0.35f);
 }
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR, int nCmdShow)

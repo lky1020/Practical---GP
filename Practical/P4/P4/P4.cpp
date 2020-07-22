@@ -71,7 +71,7 @@ void display()
 	glRotatef(0.001, 1.0, 1.0, 1.0);
 
 	drawCube(0.5);
-	drawCube(-0.5);
+	//drawCube(-0.5);
 	//--------------------------------
 	//	End of OpenGL drawing
 	//--------------------------------

@@ -1,2 +1,3 @@
 ﻿  PracticalExercise4.cpp
+c:\users\user\desktop\practical - gp\practical\practicalexercise4\practicalexercise4\practicalexercise4.cpp(215): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
   PracticalExercise4.vcxproj -> C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise4\Debug\PracticalExercise4.exe
