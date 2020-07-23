@@ -69,5 +69,4 @@ c:\users\user\desktop\practical - gp\practical\practicalexercise3\practicalexerc
 c:\users\user\desktop\practical - gp\practical\practicalexercise3\practicalexercise3\practicalexercise3cpp.cpp(552): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
 c:\users\user\desktop\practical - gp\practical\practicalexercise3\practicalexercise3\practicalexercise3cpp.cpp(568): warning C4305: '+=': truncation from 'double' to 'float'
 c:\users\user\desktop\practical - gp\practical\practicalexercise3\practicalexercise3\practicalexercise3cpp.cpp(569): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\user\desktop\practical - gp\practical\practicalexercise3\practicalexercise3\practicalexercise3cpp.cpp(579): error C2065: 'k': undeclared identifier
-c:\users\user\desktop\practical - gp\practical\practicalexercise3\practicalexercise3\practicalexercise3cpp.cpp(580): error C2146: syntax error: missing ';' before identifier 'glLineWidth'
+  PracticalExercise3.vcxproj -> C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise3\Debug\PracticalExercise3.exe
