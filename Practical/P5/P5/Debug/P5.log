@@ -1,0 +1,8 @@
+﻿  P5.cpp
+c:\users\user\desktop\practical - gp\practical\p5\p5\p5.cpp(74): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p5\p5\p5.cpp(75): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p5\p5\p5.cpp(76): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p5\p5\p5.cpp(79): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p5\p5\p5.cpp(80): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\p5\p5\p5.cpp(81): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+  P5.vcxproj -> C:\Users\User\Desktop\Practical - GP\Practical\P5\Debug\P5.exe
