@@ -58,7 +58,6 @@ bool initPixelFormat(HDC hdc)
 }
 //--------------------------------------------------------------------
 
-
 void drawSphereWithoutGLU() {
 	const float PI = 3.141592f;
 	GLfloat x, y, z, sliceA, stackA;
@@ -137,6 +136,32 @@ void myWireSphere(float r, int nParal, int nMerid) {
 	}
 }
 
+void drawScope(GLfloat radius, int noOfSlice, int noOfStack, float xDiv, float yDiv, float r, float g, float b) {
+	const float PI = 3.141592f;
+	GLfloat x, y, z, sliceA, stackA;
+
+	for (sliceA = 0.0; sliceA < PI; sliceA += PI / noOfSlice) {
+
+		glColor3d(r, g, b);
+		glBegin(GL_TRIANGLE_STRIP);
+
+		for (stackA = 0.0; stackA < 2.0 * PI; stackA += PI / noOfStack) {
+
+			x = radius * cos(stackA) * sin(sliceA);
+			y = radius * sin(stackA) * sin(sliceA);
+			z = radius * cos(sliceA);
+			glVertex3f(x / xDiv, y / yDiv, z);
+
+			x = radius * cos(stackA) * sin(sliceA + PI / noOfStack);
+			y = radius * sin(stackA) * sin(sliceA + PI / noOfStack);
+			z = radius * cos(sliceA + PI / noOfSlice);
+			glVertex3f(x / xDiv, y / yDiv, z);
+		}
+
+		glEnd();
+	}
+}
+
 void display()
 {
 	//--------------------------------
@@ -161,6 +186,8 @@ void display()
 	
 	glColor3d(1.0f, 1.0f, 1.0f);
 	drawSphereWithoutGLU();
+
+	drawScope(0.175f, 30, 30, 1.0f, 2.1f, 0.0f, 0.0f, 0.0f);
 	//drawSphere();
 	//myWireSphere(0.5, 10, 10);
 	//--------------------------------
