@@ -60,7 +60,7 @@ bool initPixelFormat(HDC hdc)
 
 
 void drawSphereWithoutGLU() {
-	const float PI = 3.14159265359f;
+	const float PI = 3.141592f;
 	GLfloat x, y, z, sliceA, stackA;
 	GLfloat radius = 0.5f;
 	int noOfSlice = 30, noOfStack = 30;
@@ -73,7 +73,7 @@ void drawSphereWithoutGLU() {
 
 			x = radius * cos(stackA) * sin(sliceA);
 			y = radius * sin(stackA) * sin(sliceA); 
-			z = radius * cos(stackA);
+			z = radius * cos(sliceA);
 			glVertex3f(x, y, z);
 
 			x = radius * cos(stackA) * sin(sliceA + PI / noOfStack);
@@ -82,6 +82,30 @@ void drawSphereWithoutGLU() {
 			glVertex3f(x, y, z);
 		}
 
+		glEnd();
+	}
+}
+
+void drawSphere() {
+	const float PI = 3.141592f;
+	GLfloat x, y, z, alpha, beta; // Storage for coordinates and angles        
+	GLfloat radius = 0.5f;
+	int gradation = 20;
+
+	for (alpha = 0.0; alpha < PI; alpha += PI / gradation)
+	{
+		glBegin(GL_TRIANGLE_STRIP);
+		for (beta = 0.0; beta < 2.01*PI; beta += PI / gradation)
+		{
+			x = radius * cos(beta)*sin(alpha);
+			y = radius * sin(beta)*sin(alpha);
+			z = radius * cos(alpha);
+			glVertex3f(x, y, z);
+			x = radius * cos(beta)*sin(alpha + PI / gradation);
+			y = radius * sin(beta)*sin(alpha + PI / gradation);
+			z = radius * cos(alpha + PI / gradation);
+			glVertex3f(x, y, z);
+		}
 		glEnd();
 	}
 }
@@ -120,7 +144,7 @@ void display()
 	//--------------------------------
 	glEnable(GL_DEPTH);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glRotatef(0.01f, 0.0f, -0.5f, 0.0f);
+	//glRotatef(0.01f, 0.0f, -0.5f, 0.0f);
 
 	/*GLUquadricObj *sphere = NULL;
 	sphere = gluNewQuadric();
@@ -134,7 +158,10 @@ void display()
 	gluCylinder(cyliner, 0.5f, 0.0f, 0.5f, 30, 30);
 	gluDeleteQuadric(cyliner);*/
 
+	
+	glColor3d(1.0f, 1.0f, 1.0f);
 	drawSphereWithoutGLU();
+	//drawSphere();
 	//myWireSphere(0.5, 10, 10);
 	//--------------------------------
 	//	End of OpenGL drawing

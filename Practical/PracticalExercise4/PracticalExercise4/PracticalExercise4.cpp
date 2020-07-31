@@ -250,7 +250,7 @@ void drawPyramid(float minX, float maxX, float minY, float maxY, float minZ, flo
 //Q3
 void q3() {
 	glPushMatrix();
-
+	glLoadIdentity();
 		glScalef(0.4, 0.4, 0.4);
 		glTranslatef(-0.8f, 0.0f, 0.0f);
 		//Left, Right to rotate

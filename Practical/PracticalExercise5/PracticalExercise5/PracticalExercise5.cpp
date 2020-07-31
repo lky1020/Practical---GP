@@ -1,13 +1,14 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#include <math.h>
 
 #pragma comment (lib, "OpenGL32.lib")
 
 #define WINDOW_TITLE "OpenGL Window"
 
 float initialConeSpeed = 0.0f;
-float coneSpeed = 0.008f;
+float coneSpeed = 0.1f;
 float initialScope1Translate = 1.5f;
 float scope1Translate = 0.0f;
 
@@ -20,12 +21,18 @@ float scope3Translate = 0.0f;
 float initialUmbrellaSpeed = 1.5f;
 float umbrellaSpeed = 0.0f;
 
+float initialChipsSpeed = 1.5f;
+float chipsSpeed = 0.0f;
+
+float initialChipsSideSpeed = 1.5f;
+float chipsSideSpeed = 0.0f;
+
 void drawIceCream();
 void drawCone(float xPos, float yPos, float zPos);
-void drawScope1(float r, float g, float b);
-void drawScope2(float r, float g, float b);
-void drawScope3(float r, float g, float b);
+void drawScope(GLfloat radius, int noOfSlice, int noOfStack, float xDiv, float yDiv, float r, float g, float b);
 void drawUmbrella(float transX, float transY, float transZ, float rotAngle, float rotX, float rotY, float rotZ, float r, float g, float b);
+void drawTissue(float xPos, float yPos, float zPos);
+void drawChips(float x, float y, float z, float transX, float transY, float transZ, float r, float g, float b);
 
 LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -38,16 +45,25 @@ LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 	case WM_KEYDOWN:
 		if (wParam == VK_ESCAPE) PostQuitMessage(0);
 		else if (wParam == 0x31 ||wParam == VK_NUMPAD1){
-			scope1Translate = 0.0005f;
+			scope1Translate = 0.0008f;
 		}
 		else if (wParam == 0x32 || wParam == VK_NUMPAD2) {
-			scope2Translate = 0.0005f;
+			if (initialScope1Translate <= 1.2f) {
+				scope2Translate = 0.0008f;
+			}
+			
 		}
 		else if (wParam == 0x33 || wParam == VK_NUMPAD3) {
-			scope3Translate = 0.0005f;
+			if (initialScope2Translate <= 1.3f) {
+				scope3Translate = 0.0008f;
+			}
 		}
 		else if (wParam == 0x55) {
-			umbrellaSpeed = 0.0005f;
+			if (initialScope3Translate <= 1.0f) {
+				umbrellaSpeed = 0.0008f;
+				chipsSpeed = 0.001f;
+				chipsSideSpeed = 0.001f;
+			}
 		}
 		break;
 
@@ -119,13 +135,51 @@ void drawIceCream() {
 		//draw umbrella
 		drawUmbrella(0.0f, 0.50f, 0.0f, 90.0f, -0.5f, 0.0f, 0.0f, 244.0f / 255.0f, 244.0f / 255.0f, 0.0f / 255.0f);
 
-		//draw scope
-		drawScope3(238.0f / 255.0f, 233.0f / 255.0f, 213.0f / 255.0f);
-		drawScope2(133.0f / 255.0f, 97.0f / 255.0f, 66.0f / 255.0f);
-		drawScope1(253.0f / 255.0f, 218.0f / 255.0f, 210.0f / 255.0f);
+		//draw chips
+		glPushMatrix();
+			drawChips(0.0f, 0.0f, 0.0f, 0.0f, 0.375f, 0.0f, 1.0f, 0.0f, 0.0f);
+
+			drawChips(0.0f, 0.0f, 0.0f, 0.1f, 0.35f, 0.0f, 1.0f, 0.0f, 0.0f);
+
+			drawChips(0.0f, 0.0f, 0.0f, -0.1f, 0.375f, 0.0f, 1.0f, 0.0f, 0.0f);
+		glPopMatrix();
+
+		//draw scope 3
+		glPushMatrix();
+			glTranslatef(0.0f, initialScope3Translate, 0.0f);
+
+			if (initialScope3Translate >= 0.2f) {
+				initialScope3Translate -= scope3Translate;
+			}
+			drawScope(0.175f, 30, 30, 1.0f, 1.1f, 238.0f / 255.0f, 233.0f / 255.0f, 213.0f / 255.0f);
+		glPopMatrix();
+
+		//draw scope 2
+		glPushMatrix();
+			glTranslatef(0.0f, initialScope2Translate, 0.0f);
+
+			if (initialScope2Translate >= 0.1f) {
+				initialScope2Translate -= scope2Translate;
+			}
+			drawScope(0.175f, 30, 30, 0.95f, 1.2f, 133.0f / 255.0f, 97.0f / 255.0f, 66.0f / 255.0f);
+		glPopMatrix();
+
+		//draw scope 1
+		glPushMatrix();
+			glTranslatef(0.0f, initialScope1Translate, 0.0f);
+
+			if (initialScope1Translate >= 0.0f) {
+				initialScope1Translate -= scope1Translate;
+			}
+
+			drawScope(0.175f, 30, 30, 0.9f, 1.3f, 253.0f / 255.0f, 218.0f / 255.0f, 210.0f / 255.0f);
+		glPopMatrix();
 
 		//draw cone
 		drawCone(0.0f, -0.5f, 0.0f);
+
+		//draw tissue
+		drawTissue(0.0f, -0.5f, 0.0f);
 
 	glPopMatrix();
 }
@@ -145,7 +199,7 @@ void drawCone(float xPos, float yPos, float zPos) {
 		gluDeleteQuadric(cone);
 
 		//draw cone with LINE
-		glColor3d(164.0f / 255.0f, 110.0f / 255.0f, 64.0f / 255.0f);
+		glColor3d(146.0f / 255.0f, 71.0f / 255.0f, 8.0f / 255.0f);
 		GLUquadricObj *coneLine = NULL;
 		coneLine = gluNewQuadric();
 		gluQuadricDrawStyle(coneLine, GLU_LINE);
@@ -154,56 +208,30 @@ void drawCone(float xPos, float yPos, float zPos) {
 	glPopMatrix();
 }
 
-void drawScope1(float r, float g, float b) {
-	
-	glPushMatrix();
-		glTranslatef(0.0f, initialScope1Translate, 0.0f);
-		
-		if (initialScope1Translate >= 0.0f) {
-			initialScope1Translate -= scope1Translate;
-		}
-		
+void drawScope(GLfloat radius, int noOfSlice, int noOfStack, float xDiv, float yDiv, float r, float g, float b) {
+	const float PI = 3.141592f;
+	GLfloat x, y, z, sliceA, stackA;
+
+	for (sliceA = 0.0; sliceA < PI; sliceA += PI / noOfSlice) {
+
 		glColor3d(r, g, b);
-		GLUquadricObj *scope = NULL;
-		scope = gluNewQuadric();
-		gluQuadricDrawStyle(scope, GLU_FILL);
-		gluSphere(scope, 0.175f, 30, 30);
-		gluDeleteQuadric(scope);
-	glPopMatrix();
-}
+		glBegin(GL_TRIANGLE_STRIP);
 
-void drawScope2(float r, float g, float b) {
-	glPushMatrix();
-	glTranslatef(0.0f, initialScope2Translate, 0.0f);
+		for (stackA = 0.0; stackA < 2.0 * PI; stackA += PI / noOfStack) {
 
-	if (initialScope2Translate >= 0.1f) {
-		initialScope2Translate -= scope2Translate;
+			x = radius * cos(stackA) * sin(sliceA);
+			y = radius * sin(stackA) * sin(sliceA);
+			z = radius * cos(sliceA);
+			glVertex3f(x / xDiv, y / yDiv, z);
+
+			x = radius * cos(stackA) * sin(sliceA + PI / noOfStack);
+			y = radius * sin(stackA) * sin(sliceA + PI / noOfStack);
+			z = radius * cos(sliceA + PI / noOfSlice);
+			glVertex3f(x / xDiv, y / yDiv, z);
+		}
+
+		glEnd();
 	}
-
-	glColor3d(r, g, b);
-	GLUquadricObj *scope = NULL;
-	scope = gluNewQuadric();
-	gluQuadricDrawStyle(scope, GLU_FILL);
-	gluSphere(scope, 0.175f, 30, 30);
-	gluDeleteQuadric(scope);
-	glPopMatrix();
-}
-
-void drawScope3(float r, float g, float b) {
-	glPushMatrix();
-		glTranslatef(0.0f, initialScope3Translate, 0.0f);
-
-		if (initialScope3Translate >= 0.2f) {
-			initialScope3Translate -= scope3Translate;
-		}
-
-		glColor3d(r, g, b);
-		GLUquadricObj *scope = NULL;
-		scope = gluNewQuadric();
-		gluQuadricDrawStyle(scope, GLU_FILL);
-		gluSphere(scope, 0.175f, 30, 30);
-		gluDeleteQuadric(scope);
-	glPopMatrix();
 }
 
 void drawUmbrella(float transX, float transY, float transZ, float rotAngle, float rotX, float rotY, float rotZ, float r, float g, float b) {
@@ -240,6 +268,42 @@ void drawUmbrella(float transX, float transY, float transZ, float rotAngle, floa
 		gluQuadricDrawStyle(awningLine, GLU_LINE);
 		gluCylinder(awningLine, 0.2f, 0.0f, 0.1f, 8, 5);
 		gluDeleteQuadric(awningLine);
+
+	glPopMatrix();
+}
+
+void drawTissue(float xPos, float yPos, float zPos) {
+	glPushMatrix();
+	//initial position of cone
+	glTranslatef(xPos, yPos, zPos);
+	glRotatef(90.0f, -0.5f, 0.0f, 0.0f);
+
+	//draw cone with FILL
+	glColor3d(1.0f, 1.0f, 1.0f);
+	GLUquadricObj *cone = NULL;
+	cone = gluNewQuadric();
+	gluQuadricDrawStyle(cone, GLU_FILL);
+	gluCylinder(cone, 0.0f, 0.125f, 0.3f, 30, 30);
+	gluDeleteQuadric(cone);
+
+	glPopMatrix();
+}
+
+void drawChips(float x, float y, float z, float transX, float transY, float transZ, float r, float g, float b) {
+	glPushMatrix();
+		glTranslatef(transX, initialChipsSpeed, transZ);
+
+		if (initialChipsSpeed >= transY) {
+			initialChipsSpeed -= chipsSpeed;
+		}
+
+		glPushMatrix();
+			glPointSize(10);
+			glColor3d(r, g, b);
+			glBegin(GL_POINTS);
+			glVertex3f(x, y, z);
+			glEnd();
+		glPopMatrix();
 
 	glPopMatrix();
 }
