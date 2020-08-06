@@ -1,0 +1,4 @@
+﻿  PracticalExercise5B.cpp
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(264): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(265): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  PracticalExercise5B.vcxproj -> C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise5B\Debug\PracticalExercise5B.exe
