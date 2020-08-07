@@ -17,13 +17,16 @@ float bridgeRotate = 0.0f;
 float bridgeZoom = 1.0f;
 
 //shape
-void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, float maxZ);
-void drawPyramid(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, float divideX, float divideZ);
+void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, GLenum type);
+void drawPyramid(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, float divideX, float divideZ, GLenum type);
 void drawSphere(float radius, int slices, int stacks);
 void drawCylinder(float baseRadius, float topRadius, float height, int slices, int stacks);
 void drawCircle(float xPoint, float yPoint, float radius);
 
 void drawBridgeBuilding();
+void drawBuildingBase(int type);
+void drawBridgeBuilding2();
+void drawBuildingBase2();
 
 LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -50,10 +53,10 @@ LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 			bridgeZoom -= 0.1f;
 		}
 		else if (wParam == VK_LEFT) {
-			bridgeRotate = -0.01f;
+			bridgeRotate = -0.05f;
 		}
 		else if (wParam == VK_RIGHT) {
-			bridgeRotate = 0.01f;
+			bridgeRotate = 0.05f;
 		}
 		break;
 
@@ -113,23 +116,34 @@ void display()
 		break;
 	case 2:
 		gluPerspective(60.0f, 1.0f, -1.0f, 0.1f);
-		glFrustum(-5.0f, 5.0f, -5.0f, 5.0f, bridgeZoom, 5.0f);
+		glFrustum(-5.0f, 5.0f, -5.0f, 5.0f, 1.0f, 5.0f);
 		break;
 	default:
-		glOrtho(-2.0f, 2.0f, -2.0f, 2.0f, -2.0f, 2.0f);
+		glOrtho(-3.0f, 3.0f, -3.0f, 3.0f, -3.0f, 3.0f);
 		//glOrtho(-5.0f, 5.0f, -5.0f, 5.0f, -5.0f, 5.0f);
 		break;
 	}
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(43.0f / 255.0f, 124.0f / 255.0f, 211.0f / 255.0f, 1.0f);
 
 	glPushMatrix();
-		glRotatef(90.0f, 0.1f, 0.0f, 0.0f);
+		glRotatef(initialBridgeRotate, 0.0f, 0.1f, 0.0f);
 		initialBridgeRotate += bridgeRotate;
 
-		drawBridgeBuilding();
-	
+		glPushMatrix();
+			glTranslatef(0.0f, -1.0f, 0.0f);
+
+			//Diagram 1
+			drawBridgeBuilding();
+
+		glPopMatrix();
+		//Diagram 2
+		//drawBridgeBuilding2();
+		
 	glPopMatrix();
 
 	//--------------------------------
@@ -139,9 +153,9 @@ void display()
 //--------------------------------------------------------------------
 
 //shape
-void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, float maxZ) {
+void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, GLenum type) {
 	//Back
-	glBegin(GL_LINE_LOOP);
+	glBegin(type);
 		glVertex3f(minX, maxY, minZ);
 		glVertex3f(minX, minY, minZ);
 		glVertex3f(maxX, minY, minZ);
@@ -149,7 +163,7 @@ void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, f
 	glEnd();
 
 	//Bottom
-	glBegin(GL_LINE_LOOP);
+	glBegin(type);
 		glVertex3f(minX, minY, maxZ);
 		glVertex3f(minX, minY, minZ);
 		glVertex3f(maxX, minY, minZ);
@@ -157,7 +171,7 @@ void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, f
 	glEnd();
 
 	//Left
-	glBegin(GL_LINE_LOOP);
+	glBegin(type);
 		glVertex3f(minX, maxY, maxZ);
 		glVertex3f(minX, maxY, minZ);
 		glVertex3f(minX, minY, minZ);
@@ -165,7 +179,7 @@ void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, f
 	glEnd();
 
 	//Top
-	glBegin(GL_LINE_LOOP);
+	glBegin(type);
 		glVertex3f(minX, maxY, maxZ);
 		glVertex3f(minX, maxY, minZ);
 		glVertex3f(maxX, maxY, minZ);
@@ -173,7 +187,7 @@ void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, f
 	glEnd();
 
 	//Right
-	glBegin(GL_LINE_LOOP);
+	glBegin(type);
 		glVertex3f(maxX, maxY, maxZ);
 		glVertex3f(maxX, maxY, minZ);
 		glVertex3f(maxX, minY, minZ);
@@ -181,45 +195,45 @@ void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, f
 	glEnd();
 
 	//Front
-	glBegin(GL_LINE_LOOP);
+	glBegin(type);
 		glVertex3f(minX, maxY, maxZ);
 		glVertex3f(minX, minY, maxZ);
 		glVertex3f(maxX, minY, maxZ);
 		glVertex3f(maxX, maxY, maxZ);
 	glEnd();
 }
-void drawPyramid(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, float divideX, float divideZ) {
+void drawPyramid(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, float divideX, float divideZ, GLenum type) {
 
 	//face - back
-	glBegin(GL_LINE_LOOP);
+	glBegin(type);
 		glVertex3f(minX, minY, minZ);
 		glVertex3f(maxX, minY, minZ);
 		glVertex3f(maxX / divideX, maxY, maxZ / divideZ);
 	glEnd();
 
 	//face - top
-	glBegin(GL_LINE_LOOP);
+	glBegin(type);
 		glVertex3f(minX, minY, maxZ);
 		glVertex3f(minX, minY, minZ);
 		glVertex3f(maxX / divideX, maxY, maxZ / divideZ);
 	glEnd();
 
 	//face - bottom
-	glBegin(GL_LINE_LOOP);
+	glBegin(type);
 		glVertex3f(maxX, minY, minZ);
 		glVertex3f(maxX, minY, maxZ);
 		glVertex3f(maxX / divideX, maxY, maxZ / divideZ);
 	glEnd();
 
 	//face - front
-	glBegin(GL_LINE_LOOP);
+	glBegin(type);
 		glVertex3f(minX, minY, maxZ);
 		glVertex3f(maxX, minY, maxZ);
 		glVertex3f(maxX / divideX, maxY, maxZ / divideZ);
 	glEnd();
 
 	//face - base
-	glBegin(GL_LINE_LOOP);
+	glBegin(type);
 		glVertex3f(minX, minY, maxZ);
 		glVertex3f(maxX, minY, maxZ);
 		glVertex3f(maxX, minY, minZ);
@@ -278,13 +292,85 @@ void drawBridgeBuilding() {
 		glPopMatrix();
 
 		//building
-		glBegin(GL_LINES);
-			glColor3d(1.0f, 1.0f, 1.0f);
-			glVertex3f(-0.30f, 0.005f, -0.30f);
-			glVertex3f(-0.30f, 0.005f, 0.30f);
-		glEnd();
+		//ground floor
+		drawBuildingBase(0);
+
+		//1st floor
+		glPushMatrix();
+			glTranslatef(0.0f, 0.65f, 0.0f);
+			drawBuildingBase(1);
+		glPopMatrix();
+
+		//2nd floor
+		glPushMatrix();
+			glTranslatef(0.0f, 1.3f, 0.0f);
+			drawBuildingBase(1);
+		glPopMatrix();
+
+		//Roof
+		glPushMatrix();
+			glColor3f(1.0f, 0.0f, 0.0f);
+			glTranslatef(0.0f, 1.95f, 0.0f);
+			drawPyramid(-0.30f, 0.30f, 0.005f, 0.4f, -0.30f, 0.30f, 20.0f, 20.0f, GL_TRIANGLES);
+		glPopMatrix();
 
 	glPopMatrix();
+}
+void drawBuildingBase(int type) {
+	//Inner
+	//front inner
+	glColor3f(143.0f / 255.0f, 91.0f / 255.0f, 63.0f / 255.0f);
+	drawRectangle(-0.30f, 0.30f, 0.005f, 0.350f, -0.30f, -0.20f, GL_QUADS);
+
+	//top inner
+	drawRectangle(-0.30f, 0.30f, 0.350f, 0.505f, -0.30f, 0.30f, GL_QUADS);
+
+	//back inner
+	drawRectangle(-0.30f, 0.30f, 0.005f, 0.350f, 0.20f, 0.30f, GL_QUADS);
+
+	//cover
+	glColor3f(118.0f / 255.0f, 62.0f / 255.0f, 35.0f / 255.0f);
+	drawRectangle(-0.30f, 0.30f, 0.505f, 0.655f, -0.30f, 0.30f, GL_QUADS);
+
+	if (type == 0) {
+		//door
+		glColor4f(0.0f, 0.0f, 0.0f, 0.0f);
+		drawRectangle(-0.30f, 0.30f, 0.005f, 0.350f, -0.20f, 0.20f, GL_QUADS);
+	}
+	else {
+		glColor3f(143.0f / 255.0f, 91.0f / 255.0f, 63.0f / 255.0f);
+		drawRectangle(-0.30f, 0.30f, 0.005f, 0.350f, -0.20f, 0.20f, GL_QUADS);
+	}
+	
+}
+
+void drawBridgeBuilding2() {
+	glPushMatrix();
+
+		//draw base
+		//cylinder
+		glPushMatrix();
+		glRotatef(90.0f, 0.5f, 0.0f, 0.0f);
+		drawCylinder(0.5f, 0.5f, 0.5f, 30, 30);
+		glPopMatrix();
+
+		//building
+		drawBuildingBase2();
+
+	glPopMatrix();
+}
+void drawBuildingBase2() {
+	//door
+	glColor4f(0.0f, 0.0f, 0.0f, 0.0f);
+	drawRectangle(-0.30f, 0.30f, 0.005f, 0.350f, -0.20f, 0.20f, GL_QUADS);
+
+	//inner
+	glColor3f(143.0f / 255.0f, 91.0f / 255.0f, 63.0f / 255.0f);;
+	drawRectangle(-0.30f, 0.30f, 0.005f, 0.505f, -0.30f, 0.30f, GL_QUADS);
+
+	//cover
+	glColor3f(118.0f / 255.0f, 62.0f / 255.0f, 35.0f / 255.0f);
+	drawRectangle(-0.30f, 0.30f, 0.505f, 0.655f, -0.30f, 0.30f, GL_QUADS);
 }
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR, int nCmdShow)
@@ -327,9 +413,6 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR, int nCmdShow)
 
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
-
-	
-
 
 	while (true)
 	{
