@@ -7,8 +7,13 @@
 
 #define WINDOW_TITLE "OpenGL Window"
 
-float initialTransZ = 0.0f;
+//projection
+int projectionType = 1;
+
+float initialTransZ = 1.0f;
 float transZ = 1.0f;
+float initialRotate = 0.0f;
+float rotate = 0.0f;
 
 LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -25,6 +30,24 @@ LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 		}
 		else if (wParam == VK_DOWN) {
 			initialTransZ -= transZ;
+		}
+		else if (wParam == VK_LEFT) {
+			rotate = 0.01f;
+		}
+		else if (wParam == VK_RIGHT) {
+			rotate = -0.01f;
+		}
+		else if (wParam == VK_SPACE) {
+			initialTransZ = 1.0f;
+			transZ = 1.0f;
+			initialRotate = 0.0f;
+			rotate = 0.0f;
+		}
+		else if (wParam == VK_NUMPAD1 || wParam == 0X31) {
+			projectionType = 1;
+		}
+		else if (wParam == VK_NUMPAD2 || wParam == 0X32) {
+			projectionType = 2;
 		}
 		break;
 
@@ -77,21 +100,113 @@ void drawSphere(float radius, GLenum shapeType) {
 
 	gluDeleteQuadric(sphere); //delete the pointer inside the memory to avoid memory full
 }
+void drawRectangle(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, GLenum type) {
+	//Back
+	glBegin(type);
+	glVertex3f(minX, maxY, minZ);
+	glVertex3f(minX, minY, minZ);
+	glVertex3f(maxX, minY, minZ);
+	glVertex3f(maxX, maxY, minZ);
+	glEnd();
 
+	//Bottom
+	glBegin(type);
+	glVertex3f(minX, minY, maxZ);
+	glVertex3f(minX, minY, minZ);
+	glVertex3f(maxX, minY, minZ);
+	glVertex3f(maxX, minY, maxZ);
+	glEnd();
+
+	//Left
+	glBegin(type);
+	glVertex3f(minX, maxY, maxZ);
+	glVertex3f(minX, maxY, minZ);
+	glVertex3f(minX, minY, minZ);
+	glVertex3f(minX, minY, maxZ);
+	glEnd();
+
+	//Top
+	glBegin(type);
+	glVertex3f(minX, maxY, maxZ);
+	glVertex3f(minX, maxY, minZ);
+	glVertex3f(maxX, maxY, minZ);
+	glVertex3f(maxX, maxY, maxZ);
+	glEnd();
+
+	//Right
+	glBegin(type);
+	glVertex3f(maxX, maxY, maxZ);
+	glVertex3f(maxX, maxY, minZ);
+	glVertex3f(maxX, minY, minZ);
+	glVertex3f(maxX, minY, maxZ);
+	glEnd();
+
+	//Front
+	glBegin(type);
+	glVertex3f(minX, maxY, maxZ);
+	glVertex3f(minX, minY, maxZ);
+	glVertex3f(maxX, minY, maxZ);
+	glVertex3f(maxX, maxY, maxZ);
+	glEnd();
+}
 void display()
 {
 	//--------------------------------
 	//	OpenGL drawing
 	//--------------------------------
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	switch (projectionType) {
+		case 1:
+			//orthographic
+			glOrtho(-5.0f, 5.0f, -5.0f, 5.0f, -5.0f, 5.0f);
+			break;
+		case 2:
+			//Perspective
+			gluPerspective(45.0f, 1.0f, -1.0f, 1.0f);
+			glFrustum(-5.0f, 5.0f, -5.0f, 5.0f, 1.0f, 6.0f);
+			break;
+		default:
+			break;
+	}
+
+
 	glEnable(GL_DEPTH_TEST);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
 	glPushMatrix();
 		
-		glMatrixMode(GL_MODELVIEW);
 		glTranslatef(0.0f, 0.0f, initialTransZ);
-		drawSphere(1.0f, GLU_POINT);
 
+		glRotatef(initialRotate, 0.0f, 0.1f, 0.0f);
+		initialRotate += rotate;
+
+		//drawSphere(1.0f, GLU_POINT);
+		glPushMatrix();
+			glTranslatef(-2.0f, 0.0f, 0.0f);
+			drawRectangle(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f, GL_LINE_LOOP);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(-2.0f, 2.0f, 0.0f);
+			drawRectangle(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f, GL_LINE_LOOP);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(2.0f, 0.0f, 0.0f);
+			drawRectangle(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f, GL_LINE_LOOP);
+		glPopMatrix();
+
+
+		glPushMatrix();
+			glTranslatef(0.0f, -5.0f, 0.0f);
+			glScalef(1.5f, 1.0f, 1.5f);
+			drawSphere(4.0f, GLU_LINE);
+		glPopMatrix();
 	glPopMatrix();
 
 	//--------------------------------
@@ -140,16 +255,6 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR, int nCmdShow)
 
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	//orthographic
-	//glOrtho(-5.0f, 5.0f, -5.0f, 5.0f, -5.0f, 5.0f);
-
-	//Perspective
-	gluPerspective(60.0f, 1.0f, -1.0f, 1.0f);
-	glFrustum(-5.0f, 5.0f, -5.0f, 5.0f, 1.0f, 8.0f);
 
 	while (true)
 	{
