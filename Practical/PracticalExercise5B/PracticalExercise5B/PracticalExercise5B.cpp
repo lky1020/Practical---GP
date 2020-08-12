@@ -6,18 +6,19 @@
 #pragma comment (lib, "OpenGL32.lib")
 #pragma comment (lib, "GLU32.lib")
 
-#define WINDOW_TITLE "OpenGL Window"
+#define WINDOW_TITLE "Practical Exercis 5B"
 
 //Projection
-int projectionType = 0;
-float x = 0.0f;
-float z = 0.0f;
-float lookAtAngle = 0.0f;
+int projectionType = 1;
 
 //Transition & Rotation
+float x = 0.0f, y = 0.0f, z = 0.0f;
+float initialViewportRotate = 0.0f;
+float viewportRotate = 0.0f;
 float initialBridgeRotate = 0.0f;
 float bridgeRotate = 0.0f;
-float bridgeZoom = 0.0f;
+float bridgeZoomInOut = 0.0f;
+float bridgeZoomLeftRight = 0.0f;
 float intitialBridgeLift = 0.0f;
 float bridgeLift = 0.0f;
 
@@ -39,6 +40,7 @@ void drawCylinder(float baseRadius, float topRadius, float height, int slices, i
 void drawCircle(float xPoint, float yPoint, float radius);
 void drawLine(float minX, float minY, float minZ, float maxX, float maxY, float maxZ);
 
+void drawFinalBridge();
 void drawBridgeBuilding();
 void drawBuildingBase(int type);
 void drawPillar(float transX, float transY, float transZ1, float transZ2);
@@ -64,34 +66,90 @@ LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 		else if (wParam == VK_NUMPAD1 || wParam == 0x31) {
 			//Orthographic
 			projectionType = 1;
+			bridgeZoomInOut = 0.0f;
+			bridgeZoomLeftRight = 0.0f;
 		}
 		else if (wParam == VK_NUMPAD2 || wParam == 0x32) {
 			//Perspective
 			projectionType = 2;
+			bridgeZoomInOut = 3.0f;
+			bridgeZoomLeftRight = 0.0f;
 		}
 		else if (wParam == VK_UP) {
-			bridgeZoom -= 0.1f;
+			if (projectionType == 2) {
+
+				if(bridgeZoomInOut < 6.0f){
+					bridgeZoomInOut += 0.1f;
+				}
+
+			}
 		}
 		else if (wParam == VK_DOWN) {
-			bridgeZoom += 0.1f;
+			if (projectionType == 2) {
+
+				if (bridgeZoomInOut > 3.0f) {
+					bridgeZoomInOut -= 0.1f;
+				}
+
+			}
 		}
 		else if (wParam == VK_LEFT) {
-			bridgeRotate = -0.25f;
+			if (projectionType == 2) {
+
+				if (bridgeZoomLeftRight < 1.0f) {
+					bridgeZoomLeftRight += 0.1f;
+				}
+
+			}
 		}
 		else if (wParam == VK_RIGHT) {
-			bridgeRotate = 0.25f;
+			if (projectionType == 2) {
+
+				if (bridgeZoomLeftRight > -1.0f) {
+					bridgeZoomLeftRight -= 0.1f;
+				}
+
+			}
+		}
+		//'X' - rotate x-axis
+		else if (wParam == 0x58) {
+			x = 0.1f;
+			y = 0.0f;
+			z = 0.0f;
+
+			viewportRotate = 0.25f;
+		}
+		//'Y' - rotate y-axis
+		else if (wParam == 0x59) {
+			x = 0.0f;
+			y = 0.1f;
+			z = 0.0f;
+
+			viewportRotate = 0.25f;
+		}
+		//'Z' - rotate z-axis
+		else if (wParam == 0x5A) {
+			x = 0.0f;
+			y = 0.0f;
+			z = 0.1f;
+
+			viewportRotate = 0.25f;
 		}
 		else if (wParam == VK_SPACE) {
 			initialBridgeRotate = 0.0f;
 			bridgeRotate = 0.0f;
-			bridgeZoom = 0.0f;
+			initialViewportRotate = 0.0f;
+			viewportRotate = 0.0f;
 			intitialBridgeLift = 0.0f;
 			bridgeLift = 0.0f;
 
-			//Look At
-			x = 0.0f;
-			z = 0.0f;
-			lookAtAngle = 0.0f;
+			if (projectionType == 1) {
+				bridgeZoomInOut = 0.0f;
+			}
+			else if (projectionType == 2) {
+				bridgeZoomInOut = 3.0f;
+			}
+
 		}
 		//'W' - lift bridge up
 		else if (wParam == 0x57) {
@@ -101,13 +159,13 @@ LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 		else if (wParam == 0x53) {
 			bridgeLift = -0.05f;
 		}
-		//'A' - look at left
+		//'A' - rotate bridge left
 		else if (wParam == 0x41) {
-			lookAtAngle += 0.01f;
+			bridgeRotate = -0.50f;
 		}
-		//'D' - look at right
+		//'D' - rotate bridge left
 		else if (wParam == 0x44) {
-			lookAtAngle -= 0.01f;
+			bridgeRotate = +0.50f;
 		}
 		break;
 
@@ -151,29 +209,36 @@ bool initPixelFormat(HDC hdc)
 }
 //--------------------------------------------------------------------
 
+void projection() {
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	//Viewport transformation
+	glRotatef(initialViewportRotate, x, y, z);
+	initialViewportRotate += viewportRotate;
+
+	glTranslatef(bridgeZoomLeftRight, 0.0f, 0.0f);
+
+	//Projection
+	switch (projectionType) {
+	case 1:
+		glOrtho(-3.0f, 3.0f, -3.0f, 3.0f, -3.0f, 3.0f);
+		break;
+	case 2:
+		gluPerspective(20.0f, 1.0f, -1.0f, 1.0f);
+		glFrustum(-3.0f, 3.0f, -3.0f, 3.0f, 1.0f, 7.0f);
+		break;
+	default:
+		break;
+	}
+
+}
+
 void display()
 {
 	//--------------------------------
 	//	OpenGL drawing
 	//--------------------------------
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	//Projection
-	switch (projectionType) {
-	case 1:
-		glOrtho(-3.2f, 3.2f, -3.0f, 3.0f, -8.0f, 8.0f);
-		//glOrtho(-5.0f, 5.0f, -5.0f, 5.0f, -5.0f, 5.0f);
-		break;
-	case 2:
-		gluPerspective(60.0f, 1.0f, -1.0f, 0.5f);
-		glFrustum(-5.0f, 5.0f, -5.0f, 5.0f, 0.5f, 5.0f);
-		break;
-	default:
-		glOrtho(-3.2f, 3.2f, -3.0f, 3.0f, -8.0f, 8.0f);
-		//glOrtho(-5.0f, 5.0f, -5.0f, 5.0f, -5.0f, 5.0f);
-		break;
-	}
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
@@ -181,60 +246,20 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(43.0f / 255.0f, 124.0f / 255.0f, 211.0f / 255.0f, 1.0f);
 
-	glMatrixMode(GL_MODELVIEW);
-	gluLookAt(x, 0, z, 0, 0, -1, 0, 1, 0);
+	projection();
 
-	x = 3.0f * sin(lookAtAngle) + 0.0f;
-	z = 3.0f * cos(lookAtAngle) - 1.0f;
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 
 	glPushMatrix();
 
-		glTranslatef(0.0f, 0.0f, 0.0f);
-			glRotatef(initialBridgeRotate, 0.0f, 0.1f, 0.0f);
-		glTranslatef(-0.0f, -0.0f, -0.0f);
+		glTranslatef(0.0f, 0.0f, bridgeZoomInOut);
+			glRotatef(initialBridgeRotate, 0.0f, 1.0f, 0.0f);
+		glTranslatef(-0.0f, -0.0f, -bridgeZoomInOut);
 
 		initialBridgeRotate += bridgeRotate;
-
-		glPushMatrix();
-			//left
-			glPushMatrix();
-				glTranslatef(-1.5f, -1.0f, bridgeZoom);
-				drawBridgeBuilding();
-			glPopMatrix();
-
-			//right
-			glPushMatrix();
-				glPushMatrix();
-					glTranslatef(1.5f, -1.0f, bridgeZoom);
-					glRotatef(-180.0f, 0.0f, 0.1f, 0.0f);
-					drawBridgeBuilding();
-				glPopMatrix();
-			glPopMatrix();
-
-		glPopMatrix();
-
-		glPushMatrix();
-			glTranslatef(-1.5f, 1.0f, 0.0f);
-			sun();
 			
-			//Bird Fly
-			glPushMatrix();
-				glTranslatef(initialBirdSpeed, 0.0, 0.0);
-				bird(0.525, 0.8, 0.775, 0.8);
-				bird(0.275, 0.6, 0.525, 0.6);
-				bird(-0.175, 0.75, 0.075, 0.75);
-			glPopMatrix();
-
-			initialBirdSpeed += birdSpeed;
-
-			if (initialBirdSpeed > 3.5) {
-				initialBirdSpeed = birdSpeed;
-			}
-			if (initialBirdSpeed < -2.0) {
-				initialBirdSpeed = birdSpeed;
-			}
-
-		glPopMatrix();
+		drawFinalBridge();
 
 	glPopMatrix();
 
@@ -379,6 +404,45 @@ void drawLine(float minX, float minY, float minZ, float maxX, float maxY, float 
 	glEnd();
 }
 
+void drawFinalBridge() {
+	glPushMatrix();
+		//left
+		glPushMatrix();
+			glTranslatef(-1.5f, -1.0f, bridgeZoomInOut);
+			drawBridgeBuilding();
+		glPopMatrix();
+
+		//right
+		glPushMatrix();
+			glTranslatef(1.5f, -1.0f, bridgeZoomInOut);
+			glRotatef(-180.0f, 0.0f, 0.1f, 0.0f);
+			drawBridgeBuilding();
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(-1.5f, 1.0f, bridgeZoomInOut);
+			sun();
+
+			//Bird Fly
+			glPushMatrix();
+				glTranslatef(initialBirdSpeed, 0.0f, 0.0f);
+				bird(0.525f, 0.8f, 0.775f, 0.8f);
+				bird(0.275f, 0.6f, 0.525f, 0.6f);
+				bird(-0.175f, 0.75f, 0.075f, 0.75f);
+			glPopMatrix();
+
+			initialBirdSpeed += birdSpeed;
+
+			if (initialBirdSpeed > 3.5f) {
+				initialBirdSpeed = birdSpeed;
+			}
+			if (initialBirdSpeed < -2.0f) {
+				initialBirdSpeed = birdSpeed;
+			}
+
+		glPopMatrix();
+	glPopMatrix();
+}
 void drawBridgeBuilding() {
 	glPushMatrix();
 
