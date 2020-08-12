@@ -1,4 +1,13 @@
 ﻿  PracticalExercise5B.cpp
-c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(264): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(265): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(32): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(395): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(396): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(623): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(625): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(648): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(652): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(667): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(669): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(682): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\user\desktop\practical - gp\practical\practicalexercise5b\practicalexercise5b\practicalexercise5b.cpp(683): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
   PracticalExercise5B.vcxproj -> C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise5B\Debug\PracticalExercise5B.exe
