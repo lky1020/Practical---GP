@@ -16,9 +16,17 @@ float initialRotate = 0.0f;
 float rotate = 0.0f;
 float trans = 0.0f;
 
+//Lighting
+boolean isLightOn = false;
+
 //Ligh source
 GLfloat ambient[] = { 1.0f, 0.0f, 0.0f };
-GLfloat position[] = { 0.0f, 1.0f, 0.0f };
+GLfloat positionA[] = { 0.0f, 3.0f, 0.0f };
+GLfloat diffuse[] = { 0.0f, 1.0f, 0.0f };
+GLfloat positionD[] = { 3.0f, 0.0f, 0.0f };
+
+GLfloat ambientM[] = { 1.0f, 0.0f, 0.0f };
+GLfloat diffuseM[] = { 0.0f, 1.0f, 0.0f };
 
 LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -56,12 +64,18 @@ LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 		else if (wParam == 0x44) {
 			trans += 0.1f;
 		}
+		//'O' - turn lighting on
+		else if (wParam == 0x4F) {
+			isLightOn = !isLightOn;
+			
+		}
 		else if (wParam == VK_SPACE) {
 			initialTransZ = 0.0f;
 			transZ = 1.0f;
 			initialRotate = 0.0f;
 			rotate = 0.0f;
 			trans = 0.0f;
+			isLightOn = false;
 		}
 		else if (wParam == VK_NUMPAD1 || wParam == 0X31) {
 			projectionType = 1;
@@ -193,6 +207,25 @@ void projection() {
 		break;
 	}
 }
+void lighting() {
+
+	if (isLightOn) {
+		glEnable(GL_LIGHTING);
+	}
+	else {
+		glDisable(GL_LIGHTING);
+	}
+
+	//Ambient 
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+	glLightfv(GL_LIGHT0, GL_POSITION, positionA);
+	glEnable(GL_LIGHT0);
+
+	//Diffuse
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse);
+	glLightfv(GL_LIGHT1, GL_POSITION, positionD);
+	glEnable(GL_LIGHT1);
+}
 
 void display()
 {
@@ -204,11 +237,7 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	projection();
-
-	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHTING);
-	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
-	glLightfv(GL_LIGHT0, GL_POSITION, position);
+	lighting();
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -217,32 +246,9 @@ void display()
 
 		glTranslatef(0.0f, 0.0f, initialTransZ);
 
-		/*glRotatef(initialRotate, 0.0f, 0.1f, 0.0f);
-		initialRotate += rotate;*/
-
+		glColor3f(0.0f, 1.0f, 0.0f);
+		glMaterialfv(GL_FRONT, GL_AMBIENT, ambientM);
 		drawSphere(1.0f, GLU_FILL);
-
-		/*Testing
-		glPushMatrix();
-			glTranslatef(-2.0f, 0.0f, 0.0f);
-			drawRectangle(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f, GL_LINE_LOOP);
-		glPopMatrix();
-
-		glPushMatrix();
-			glTranslatef(-2.0f, 2.0f, 0.0f);
-			drawRectangle(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f, GL_LINE_LOOP);
-		glPopMatrix();
-
-		glPushMatrix();
-			glTranslatef(2.0f, 0.0f, 0.0f);
-			drawRectangle(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f, GL_LINE_LOOP);
-		glPopMatrix();
-
-		glPushMatrix();
-			glTranslatef(0.0f, -5.0f, 0.0f);
-			glScalef(1.5f, 1.0f, 1.5f);
-			drawSphere(4.0f, GLU_LINE);
-		glPopMatrix();*/
 
 	glPopMatrix();
 
