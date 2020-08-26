@@ -1,3 +1,3 @@
 ﻿  P4.cpp
-c:\users\user\desktop\practical - gp\practical\p4\p4\p4.cpp(71): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\User\Desktop\Practical - GP\Practical\P4\P4\P4.cpp(71,32): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
   P4.vcxproj -> C:\Users\User\Desktop\Practical - GP\Practical\P4\Debug\P4.exe

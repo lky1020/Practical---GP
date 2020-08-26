@@ -1,0 +1,8 @@
+﻿  PracticalExercise7.cpp
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7\PracticalExercise7\PracticalExercise7.cpp(511,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7\PracticalExercise7\PracticalExercise7.cpp(512,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7\PracticalExercise7\PracticalExercise7.cpp(513,15): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7\PracticalExercise7\PracticalExercise7.cpp(516,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7\PracticalExercise7\PracticalExercise7.cpp(517,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7\PracticalExercise7\PracticalExercise7.cpp(518,15): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+  PracticalExercise7.vcxproj -> C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7\Debug\PracticalExercise7.exe
