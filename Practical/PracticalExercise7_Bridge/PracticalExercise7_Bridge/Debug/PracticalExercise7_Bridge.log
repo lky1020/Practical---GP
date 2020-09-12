@@ -1,0 +1,15 @@
+﻿  PracticalExercise7_Bridge.cpp
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(55,30): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(714,50): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(723,51): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(723,21): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(971,43): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(973,51): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(973,21): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(1022,43): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(1024,53): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(1024,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(1036,44): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(1038,54): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\PracticalExercise7_Bridge\PracticalExercise7_Bridge.cpp(1038,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  PracticalExercise7_Bridge.vcxproj -> C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_Bridge\Debug\PracticalExercise7_Bridge.exe

@@ -12,7 +12,7 @@ void drawSphere(float radius);
 void drawPyramid(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, float divideX, float divideZ);
 
 char shape = 'O';
-float speed = 0.1f;
+float speed = 0.01f;
 
 //rotation
 float x = 0.0f, y = 0.0f, z = 0.0f;
@@ -23,7 +23,7 @@ float rotateSpeed = 0.0f;
 boolean isLightOn = false;
 
 //light source
-GLfloat dx = 0.0f, dy = 0.0f, dz = 0.0f;
+GLfloat dx = 0.0f, dy = 0.1f, dz = 0.0f;
 GLfloat diffuseColor[] = { 1.0f, 0.0f, 0.0f };
 GLfloat posD[] = { dx, dy, dz };
 

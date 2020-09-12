@@ -1,0 +1,8 @@
+﻿  PracticalExercise7_IceCream.cpp
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_IceCream\PracticalExercise7_IceCream\PracticalExercise7_IceCream.cpp(289,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_IceCream\PracticalExercise7_IceCream\PracticalExercise7_IceCream.cpp(290,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_IceCream\PracticalExercise7_IceCream\PracticalExercise7_IceCream.cpp(291,15): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_IceCream\PracticalExercise7_IceCream\PracticalExercise7_IceCream.cpp(311,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_IceCream\PracticalExercise7_IceCream\PracticalExercise7_IceCream.cpp(312,29): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_IceCream\PracticalExercise7_IceCream\PracticalExercise7_IceCream.cpp(313,15): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+  PracticalExercise7_IceCream.vcxproj -> C:\Users\User\Desktop\Practical - GP\Practical\PracticalExercise7_IceCream\Debug\PracticalExercise7_IceCream.exe

@@ -11,10 +11,12 @@ using namespace std;
 
 //draw Shape
 void drawCube(float size);
+void drawCubeTesting(float size);
 
 //Texture
 BITMAP BMP;				//bitmap structure
 HBITMAP hBMP = NULL;	//bitmap handle
+GLuint testing;
 
 LRESULT WINAPI WindowProcedure(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -115,6 +117,8 @@ void display()
 	string = "ice.bmp";
 	textures[1] = loadTexture(string.c_str());
 	drawCube(-0.5f);
+
+	glDeleteTextures(1, &textures[0]);
 	glDeleteTextures(1, &textures[1]);
 
 	glDisable(GL_TEXTURE_2D);
@@ -213,6 +217,118 @@ void drawCube(float size) {
 		glVertex3f(0.0f, size, 0.0f);
 
 	glEnd();
+}
+void drawCubeTesting(float size) {
+	
+
+	//glColor3d(1.0f, 0.0f, 0.0f);
+	// Face 1 : Bottom
+	string str = "Box.bmp";
+	testing = loadTexture(str.c_str());
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(0.0f, 0.0f, size);
+
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(size, 0.0f, size);
+
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(size, 0.0f, 0.0f);
+
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(0.0f, 0.0f, 0.0f);
+	glEnd();
+	glDeleteTextures(1, &testing);
+	
+	// Face 2 : Left
+	str = "Box.bmp";
+	testing = loadTexture(str.c_str());
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(0.0f, 0.0f, 0.0f);
+
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(0.0f, size, 0.0f);
+
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(0.0f, size, size);
+
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(0.0f, 0.0f, size);
+	glEnd();
+	glDeleteTextures(1, &testing);
+
+	// Face 3 : Front
+	str = "Box.bmp";
+	testing = loadTexture(str.c_str());
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(0.0f, 0.0f, size);
+
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(0.0f, size, size);
+
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(size, size, size);
+
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(size, 0.0f, size);
+	glEnd();
+	glDeleteTextures(1, &testing);
+
+	// Face 4 : Right
+	str = "Box.bmp";
+	testing = loadTexture(str.c_str());
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(size, 0.0f, size);
+
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(size, 0.0f, 0.0f);
+
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(size, size, 0.0f);
+
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(size, size, size);
+	glEnd();
+	glDeleteTextures(1, &testing);
+
+	// Face 5 : Top
+	str = "Box.bmp";
+	testing = loadTexture(str.c_str());
+	glBegin(GL_QUADS);
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(size, size, size);
+
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(0.0f, size, size);
+
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(0.0f, size, 0.0f);
+
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(size, size, 0.0f);
+	glEnd();
+	glDeleteTextures(1, &testing);
+
+	// Face 6 : Back
+	str = "Box.bmp";
+	testing = loadTexture(str.c_str());
+	glBegin(GL_QUADS);
+		glTexCoord2f(1.0f, 1.0f);
+		glVertex3f(size, size, 0.0f);
+
+		glTexCoord2f(1.0f, 0.0f);
+		glVertex3f(size, 0.0f, 0.0f);
+
+		glTexCoord2f(0.0f, 0.0f);
+		glVertex3f(0.0f, 0.0f, 0.0f);
+
+		glTexCoord2f(0.0f, 1.0f);
+		glVertex3f(0.0f, size, 0.0f);
+	glEnd();
+	glDeleteTextures(1, &testing);
 }
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR, int nCmdShow)
